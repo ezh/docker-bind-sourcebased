@@ -43,7 +43,7 @@ ARG bind_user_id=1000
 COPY entrypoint.sh /
 COPY bind/ /opt/bind/etc/
 
-RUN apk add --no-cache bash gcc curl tar file wget libcap libcap-dev \
+RUN apk add --no-cache bash gcc curl tar file wget shadow libcap libcap-dev \
         alpine-sdk linux-headers libxml2 libxml2-dev openssl openssl-dev \
         expat libacl libatomic libattr libedit libgcc            `#explicit subdependencies` \
         libstdc++ lzo pcre pkgconf xz-libs libressl libsmartcols `#explicit subdependencies` && \

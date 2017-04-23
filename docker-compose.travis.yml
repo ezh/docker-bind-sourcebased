@@ -1,0 +1,10 @@
+version: '2'
+services:
+  bind:
+    build:
+      context: docker
+      args:
+        version: 9.10.5
+        bind_user_id: 901
+    image: bind:latest
+    restart: "no"

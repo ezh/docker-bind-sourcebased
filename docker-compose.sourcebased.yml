@@ -1,0 +1,32 @@
+version: '2'
+services:
+  bind:
+    build:
+      context: docker
+      args:
+        version: 9.10.5
+        bind_user_id: 1001
+    cap_drop:
+      - all
+    cap_add:
+      - NET_BIND_SERVICE
+    networks:
+      local:
+        ipv4_address: 10.0.0.1
+    restart: "always"
+    volumes:
+      - "bind-config:/opt/bind/etc"
+      - "bind-data:/opt/bind/var"
+volumes:
+  bind-config:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/bind/etc
+      o: bind
+  bind-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/bind/data
+      o: bind
