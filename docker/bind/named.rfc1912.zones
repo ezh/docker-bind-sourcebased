@@ -4,39 +4,41 @@
 //
 // ISC BIND named zone configuration for zones recommended by
 // RFC 1912 section 4.1 : localhost TLDs and address zones
-// and http://www.ietf.org/internet-drafts/draft-ietf-dnsop-default-local-zones-02.txt
-// (c)2007 R W Franks
 // 
 // See /usr/share/doc/bind*/sample/ for example named configuration files.
 //
-
-zone "localhost.localdomain" IN {
+zone "localdomain" IN {
 	type master;
-	file "named.localhost";
+	file "localdomain.zone";
 	allow-update { none; };
 };
 
 zone "localhost" IN {
 	type master;
-	file "named.localhost";
+	file "localhost.zone";
 	allow-update { none; };
 };
 
-zone "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa" IN {
+zone "0.0.127.in-addr.arpa" IN {
 	type master;
-	file "named.loopback";
+	file "named.local";
 	allow-update { none; };
 };
 
-zone "1.0.0.127.in-addr.arpa" IN {
+zone "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa" IN {
+        type master;
+	file "named.ip6.local";
+	allow-update { none; };
+};
+
+zone "255.in-addr.arpa" IN {
 	type master;
-	file "named.loopback";
+	file "named.broadcast";
 	allow-update { none; };
 };
 
 zone "0.in-addr.arpa" IN {
 	type master;
-	file "named.empty";
+	file "named.zero";
 	allow-update { none; };
 };
-
