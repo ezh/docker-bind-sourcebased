@@ -44,12 +44,13 @@ script:
     set -e
     docker images
     docker-compose -f docker-compose.yml -f docker-compose.travis.yml up -d
-    sleep 5
+    sleep 10
     docker-compose exec bind named -v
     docker-compose exec bind dig www.isc.org IN A
     docker-compose exec bind cat /opt/bind/var/named.log
-    docker-compose exec bind rndc status
     docker-compose exec bind /bin/bash -c 'ps aux | awk "/^\s+1 bind .* named -g/ {print \"TEST PASSED\"}"' | grep PASSED
+    docker-compose logs
+    docker-compose exec bind rndc status
     docker-compose down
     docker tag bind:latest $REPO
     test -n "$GIT_TAG" && docker tag $REPO $REPO:$GIT_TAG || echo Skip publishing untagged docker image...
