@@ -23,4 +23,7 @@ then
 fi
 echo "Bind user defined as $(id bind)"
 
+# start named under root
+[[ $UID == 0 || $EUID == 0 ]] && [[ "$1" == "named" ]] && [[ "$2" == "-g" ]] && id && pwd && chown -R root .
+
 exec "$@"

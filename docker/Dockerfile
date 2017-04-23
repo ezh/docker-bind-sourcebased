@@ -69,5 +69,7 @@ VOLUME [ "/opt/bind" ]
 
 USER bind
 
+WORKDIR ${bind_dir}
+
 CMD ["named", "-g"]
 

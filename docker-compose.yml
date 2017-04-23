@@ -6,7 +6,5 @@ services:
       - BIND_GROUP_ID=1001
     image: ezh1k/bind
     restart: unless-stopped
-    cap_drop:
-      - all
     cap_add:
       - NET_BIND_SERVICE

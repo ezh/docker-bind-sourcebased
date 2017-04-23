@@ -8,3 +8,5 @@ services:
         bind_user_id: 901
     image: bind:latest
     restart: "no"
+    # dirty hack for Travis CI
+    user: root
